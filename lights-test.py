@@ -7,11 +7,10 @@ import sys
 
 GPIO.setmode(GPIO.BCM)
 
-pins = [2, 3, 17]
+pins = [2, 3, 4, 14, 17, 18]
 
-for x in pins:
-    GPIO.setup(x, GPIO.OUT)
-    GPIO.output(x, GPIO.LOW)
+GPIO.setup(pins, GPIO.OUT)
+GPIO.output(pins, GPIO.LOW)
 
 GPIO.setwarnings(False)
 
@@ -22,13 +21,10 @@ try:
     for x in c:
         x = int(x)
         GPIO.output(x, GPIO.HIGH)
-        ti = 0.75 if i % 4 == 0 else 0.5
-        time.sleep(ti)
+        time.sleep(0.5)
         GPIO.output(x, GPIO.LOW)
         i+=1
         
 except KeyboardInterrupt:
-    GPIO.output(2, GPIO.LOW)
-    GPIO.output(3, GPIO.LOW)
-    GPIO.output(17, GPIO.LOW)
+    GPIO.output(pins, GPIO.LOW)
     sys.exit(0)

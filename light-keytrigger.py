@@ -10,9 +10,8 @@ GPIO.setmode(GPIO.BCM)
 
 pins = [2, 3, 17]
 
-for x in pins:
-    GPIO.setup(x, GPIO.OUT)
-    GPIO.output(x, GPIO.LOW)
+GPIO.setup(pins, GPIO.OUT)
+GPIO.output(pins, GPIO.LOW)
 
 GPIO.setwarnings(False)
 

@@ -4,25 +4,28 @@ import RPi.GPIO as GPIO
 import time
 from itertools import cycle 
 import sys
-from random import choice, randrange
 
 GPIO.setmode(GPIO.BCM)
 
-pins = [2, 3, 17]
+pins = [2, 3, 4, 14, 17, 18]
 
 GPIO.setup(pins, GPIO.OUT)
 GPIO.output(pins, GPIO.LOW)
 
 GPIO.setwarnings(False)
 
-try:
-    while True:
-        light = int(choice(pins))
-        rand = randrange(1, 10, 1) / 10
-        GPIO.output(light, GPIO.HIGH)
-        time.sleep(rand)
-        GPIO.output(light, GPIO.LOW)
+c = cycle(pins)
+i = 1
 
+try:
+    for x in c:
+        x = int(x)
+        GPIO.output(x, GPIO.HIGH)
+        ti = 0.75 if i % 4 == 0 else 0.5
+        time.sleep(ti)
+        GPIO.output(x, GPIO.LOW)
+        i+=1
+        
 except KeyboardInterrupt:
     GPIO.output(pins, GPIO.LOW)
     sys.exit(0)
