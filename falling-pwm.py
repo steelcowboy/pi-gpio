@@ -7,7 +7,7 @@ import sys
 
 GPIO.setmode(GPIO.BCM)
 
-pins = [2, 3, 4, 14, 17, 18]
+pins = [26, 19, 13, 6, 21, 20]
 
 GPIO.setup(pins, GPIO.OUT)
 GPIO.output(pins, GPIO.LOW)
