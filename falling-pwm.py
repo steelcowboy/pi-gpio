@@ -4,10 +4,11 @@ import RPi.GPIO as GPIO
 from collections import OrderedDict
 import time
 import sys
+import mypins
 
 GPIO.setmode(GPIO.BCM)
 
-pins = [26, 19, 13, 6, 21, 20]
+pins = mypins.pins6
 
 GPIO.setup(pins, GPIO.OUT)
 GPIO.output(pins, GPIO.LOW)
@@ -18,7 +19,7 @@ p = OrderedDict()
 
 try:
     for x, y in enumerate(pins):
-        p["pin{0}".format(x)] = GPIO.PWM(y, 0.5)
+       p["pin{0}".format(x)] = GPIO.PWM(y, 0.5)
     for key in p:
         p[key].start(5)
         time.sleep(0.1)

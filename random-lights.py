@@ -5,10 +5,11 @@ import time
 from itertools import cycle 
 import sys
 from random import choice, randrange
+import mypins
 
 GPIO.setmode(GPIO.BCM)
 
-pins = [2, 3, 17]
+pins = mypins.pins6 
 
 GPIO.setup(pins, GPIO.OUT)
 GPIO.output(pins, GPIO.LOW)

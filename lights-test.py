@@ -4,10 +4,11 @@ import RPi.GPIO as GPIO
 import time
 from itertools import cycle 
 import sys
+import mypins
 
 GPIO.setmode(GPIO.BCM)
 
-pins = [2, 3, 4, 14, 17, 18]
+pins = mypins.pins6 
 
 GPIO.setup(pins, GPIO.OUT)
 GPIO.output(pins, GPIO.LOW)
@@ -15,7 +16,6 @@ GPIO.output(pins, GPIO.LOW)
 GPIO.setwarnings(False)
 
 c = cycle(pins)
-i = 1
 
 try:
     for x in c:
@@ -23,7 +23,6 @@ try:
         GPIO.output(x, GPIO.HIGH)
         time.sleep(0.5)
         GPIO.output(x, GPIO.LOW)
-        i+=1
         
 except KeyboardInterrupt:
     GPIO.output(pins, GPIO.LOW)
